@@ -29,6 +29,5 @@ elif [ -n "$VAR_NAME"]
 then
 	codefresh run $PIPELINE_NAME --branch=$BRANCH --var $VAR_NAME=$VAR_VALUE
 else
-then
 	codefresh run $PIPELINE_NAME --branch=$BRANCH
 fi
