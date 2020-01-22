@@ -13,13 +13,19 @@ if [ -f $GITHUB_EVENT_PATH ]; then
 else
 	echo "Required file on path 'GITHUB_EVENT_PATH' not exists"
 fi
+
+
 codefresh auth create-context context --api-key $CF_API_KEY
 codefresh auth use-contex context
 
 
-if [ -n "$TRIGGER_NAME" ]
+if [ (-n "$TRIGGER_NAME") -a ( -n "$VAR_NAME")]
 then
+	codefresh run $PIPELINE_NAME --trigger=$TRIGGER_NAME --branch=$BRANCH --var $VAR_NAME=$VAR_VALUE
+elif [ -n "$TRIGGER_NAME"]
 	codefresh run $PIPELINE_NAME --trigger=$TRIGGER_NAME --branch=$BRANCH
+elif [ -n "$VAR_NAME"]
+	codefresh run $PIPELINE_NAME --branch=$BRANCH --var $VAR_NAME=$VAR_VALUE
 else
 	codefresh run $PIPELINE_NAME --branch=$BRANCH
 fi
