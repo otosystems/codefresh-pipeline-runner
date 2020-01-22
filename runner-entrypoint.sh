@@ -23,9 +23,12 @@ if [ -n "$TRIGGER_NAME" ] && [ -n "$VAR_NAME" ]
 then
 	codefresh run $PIPELINE_NAME --trigger=$TRIGGER_NAME --branch=$BRANCH --var $VAR_NAME=$VAR_VALUE
 elif [ -n "$TRIGGER_NAME"]
+then
 	codefresh run $PIPELINE_NAME --trigger=$TRIGGER_NAME --branch=$BRANCH
 elif [ -n "$VAR_NAME"]
+then
 	codefresh run $PIPELINE_NAME --branch=$BRANCH --var $VAR_NAME=$VAR_VALUE
 else
+then
 	codefresh run $PIPELINE_NAME --branch=$BRANCH
 fi
