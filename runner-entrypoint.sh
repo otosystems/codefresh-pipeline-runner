@@ -19,7 +19,7 @@ codefresh auth create-context context --api-key $CF_API_KEY
 codefresh auth use-contex context
 
 
-if [ (-n "$TRIGGER_NAME") -a ( -n "$VAR_NAME")]
+if [ -n "$TRIGGER_NAME" ] && [ -n "$VAR_NAME" ]
 then
 	codefresh run $PIPELINE_NAME --trigger=$TRIGGER_NAME --branch=$BRANCH --var $VAR_NAME=$VAR_VALUE
 elif [ -n "$TRIGGER_NAME"]
